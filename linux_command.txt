@@ -1,0 +1,48 @@
+m .zshrc.user
+
+which dikff_source
+
+git --version  
+
+use "." and "," for director stack
+
+emacs setup.txt -nw
+
+bg, fg, kill, killall
+
+ps -edf
+kill -9 27727
+
+ps -ef | grep sci #monit processus   
+ps auxww | grep -v grep | grep emacs
+
+cvs ci -m
+
+egrep "C_nsr|D_nsr" trace_file
+
+egrep "C_nsr|D_nsr" tracefile | tail -n 2
+
+tail -n 2 trace_file //automatically repeated each second
+tail -n 2 trace_file | egrep "C_nsr|D_nsr"
+
+/bin/sh -c ./testDopplerSingle -x testDopplerSingle_SC_div2.cfg 2>&1 | tee -a trace_debug.txt
+
+
+alias cleanMake='./cleanMake -f CMMB_MAKE_FE.hh'
+
+
+cp path/*.{h,c} dest/.
+rm *.{h,c}
+
+
+sudo dpkg -j ...
+
+ssh -X ...
+
+find -type f -name "*~" -exec rm '{}' ';'
+find stratego-libraries/sglr/lib -name "*.str" -exec touch {} ";"
+
+/****Hard disk occupancy****/
+df
+du --max-depth=1 -h /*Occupancy per folder with depth 1 and size not depicted in bytes (but K/M/G...bytes)*/
+du -sh mydir

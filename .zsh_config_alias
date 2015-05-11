@@ -1,0 +1,82 @@
+###########################################
+#  Alias config file for zsh              #
+#  Amaury DEMOL  for DiBcom               #
+#  le 01/10/10                            #
+###########################################
+# ported from /etc/bashrc (detect terminal or script mode)
+if test "${LS_COLORS+empty}" = "${LS_COLORS:+empty}" ; then
+    LS_OPTIONS="-N --color=tty -T 0"
+else
+    LS_OPTIONS="-N --color=none -T 0"
+fi
+#unhash -a -m ls
+unalias ls 2>/dev/null
+alias ls="ls $LS_OPTIONS"
+alias m="less -eM -x4"
+alias c='/bin/cat'
+alias ll='ls -lF'
+alias la='ls -laF'
+alias llt='ls -ltr'
+alias lsd='ls -ld *(-/DN)'
+alias lls='ls -lSr'
+alias lsa='ls -ld .*'
+alias l='ls -F'
+alias p='ps auxr'
+alias k='echo "correcting k to l"; ls -F'
+alias h='history'
+alias .='dirs -v'
+alias ,='cd -1'
+alias ,,='cd -2'
+alias ,,,='cd -3'
+alias ,,,,='cd -4'
+alias sz='source ${HOME}/.zshrc'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv'
+alias cp='nocorrect cp'
+alias x='startx -- -dpi 92'
+alias doc='cd doc/'
+alias lib='cd lib/'
+alias bin='cd bin/'
+alias tmp='cd tmp/'
+alias include='cd include/'
+alias t='tail -f'
+alias j=jobs
+alias grep=egrep
+alias xdiff='diff -wbB'
+alias a2ps1='a2ps -1 -r --font-size=7'
+alias a2psp='a2ps -1 -r --font-size=7'
+alias a2psl='a2ps --columns=1 -r -l 160'
+#alias psg='ps auxww | grep '             # now a function
+alias exit='fc -W > ~/.zhist; exit'
+alias ssh='echo $DISPLAY > $HOME/.remote_disp ; ssh'
+alias acro="acroread -openInNewWindow"
+
+
+alias fr_x11keys='setxkbmap fr ; xmodmap $HOME/.Xmodmap'
+alias us_x11keys='setxkbmap us ; xmodmap $HOME/.Xmodmap'
+alias uk_x11keys='setxkbmap uk ; xmodmap $HOME/.Xmodmap'
+alias fr_termkeys='loadkeys fr'
+alias us_termkeys='loadkeys us'
+alias uk_termkeys='loadkeys uk'
+
+# suffixes aliases
+[[ $ZSH_VERSION > 4.2 ]] && {
+alias -s cc=emacs
+alias -s c=emacs
+alias -s h=emacs
+alias -s txt=less
+alias -s pdf=acro
+alias -s png=display
+alias -s gif=display
+alias -s jpg=display
+alias -s fig=xfig
+alias -s doc=soffice
+alias -s xls=soffice
+alias -s ppt=soffice
+alias -s pps=soffice
+}
+
+# user specific
+if [ -f ${HOME}/.alias ]; then
+    source ${HOME}/.alias
+fi

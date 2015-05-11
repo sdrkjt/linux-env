@@ -1,0 +1,7 @@
+#! /usr/bin/zsh
+mot=$1
+fich=$2
+
+grepnim $mot $fich > toto.txt
+octave --eval "a=load(\"toto.txt\"); plot(10*log10(abs(a)+1e-5*ones(size(a))));" --persist 
+rm toto.txt

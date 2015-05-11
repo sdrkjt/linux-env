@@ -1,0 +1,64 @@
+,vi ../SPLIB.old/0001-initialize-list_spp_static-in-spp_dump.cc.patch
+git am ../SPLIB.old/0001-initialize-list_spp_static-in-spp_dump.cc.patch //apply a patch
+
+export LESS="-r -e"
+git whatchanged -p -1
+
+git clone git@dibcom12:/SPLIB.git
+
+git diff //local base
+git diff origin //server
+
+
+more .git/config
+
+//remove a branch from server
+//git push origin :heads/fe_ofunc.cc
+//git push -f origin master //delete old ref & push new ref
+
+git push origin --delete dev
+
+git submodule sync
+git submodule update
+
+//Pulling down the submodules is a two-step process
+git submodule init
+git submodule update
+
+git checkout -b NEMO
+
+git checkout -b R2_CSIcomplex remotes/origin/R2_CSIcomplex
+
+git submodule add git@dibcom12:/SIGFE.git IP/SIGFE
+
+git pull --rebase //rebase all local commits with the current repository
+git rebase master //from NEMO branch
+
+
+git remote add nico  /home/users/nmarguin/SPG/CMMB/.git
+git remote add nico  /home/users/nmarguin/SPG/CMMB -t master
+git remote update
+git remote fetch
+git checkout -t newbranch //checkout a branch from database&tracking
+
+
+git tag ko
+git tag -d ko
+git push origin tagname
+git branch -d toto //delete branch
+
+/**********Patch****
+git diff <from> <to> <fichier> >file.patch //create a patch
+
+git apply --stat fix_empty_poster.patch
+git apply --check fix_empty_poster.patch
+//git am --signoff
+git apply sigfe.patch
+
+
+
+MERGE or REBASE:
+-si on travaille sur master et on veut pusher sur master(qui contient d'autre commits entre-temps) => rebase avant push
+-si on travaille sur une branch X, et on veut recuperer les modifs sur Y
+apres on veut pusher sur X => use merge dans ce cas, car si on fait un rebase sur Y, on ne peut plus pusher sur X.
+-REFERENCE sur une branch en local: ne pas utiliser rebase car on perd l'historic donc les références.

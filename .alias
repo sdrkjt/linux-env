@@ -1,0 +1,21 @@
+#move to trash
+mvtt(){
+	for i
+	do mv $i /home/users/trnguyen/trash
+	done
+}
+alias cu='cvs -n update -A | grep -v "\?"'
+alias cuna='cvs -n update  | grep -v "\?"'
+alias tda='tkdiff -r HEAD'
+alias gs='git status'
+alias gk='gitk --all &'
+alias gg='git gui &'
+alias gf='git fetch &'
+alias gd='git diff'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gcf='git commit -f'
+alias gco='git checkout'
+alias ggr='git grep'
+
+export MUTANT_ROOT=/home/users/emmanuel/MUTANT/

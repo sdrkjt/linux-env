@@ -1,0 +1,8 @@
+#! /bin/zsh
+etags --languages=C++,C --links=no *.cc *.hh
+etags -a TAGS --languages=C++,C --links=no --exclude=z_C_V1_1 --exclude=z_C_V1_2 --exclude=DIVTEST --exclude=IP --recurse=yes IP/SPTOOLS
+etags -a TAGS --languages=C++,C --links=no --exclude=ctrans --exclude=SPLIB --exclude=z_C_V1_1 --exclude=z_C_V1_2 --recurse=yes IP/SIGFE
+etags -a TAGS --languages=C++,C --links=no --recurse=yes IP/SPLIB
+etags -a TAGS --languages=C++,C --links=no --recurse=yes IP/.R2
+
+

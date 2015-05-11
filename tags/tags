@@ -1,0 +1,10 @@
+#! /bin/sh
+
+echo "" > tags_file
+find . -name "*.h" -exec echo  '{}' >> tags_file \;
+find . -name "*.hh" -exec echo  '{}' >> tags_file \;
+find . -name "*.c" -exec echo  '{}' >> tags_file \;
+find . -name "*.cpp" -exec echo  '{}' >> tags_file \;
+find . -name "*.cc" -exec echo  '{}' >> tags_file \;
+
+etags `cat tags_file`
