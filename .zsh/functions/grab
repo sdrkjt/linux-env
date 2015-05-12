@@ -1,0 +1,10 @@
+# grab a window (selected with mouse button 1
+# and save it under the name given (by default window.gif)
+# Linux Only
+# A.D. 7 / 12 /2000
+
+if [ $# -eq 1 ]; then
+   import -silent -frame  $1
+else
+   import -silent -frame  ~/window.gif
+fi

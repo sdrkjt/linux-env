@@ -62,3 +62,7 @@ MERGE or REBASE:
 -si on travaille sur une branch X, et on veut recuperer les modifs sur Y
 apres on veut pusher sur X => use merge dans ce cas, car si on fait un rebase sur Y, on ne peut plus pusher sur X.
 -REFERENCE sur une branch en local: ne pas utiliser rebase car on perd l'historic donc les références.
+
+/**********email - username****
+git config --global user.email trung.nguyen@polytechnique.org
+git config --global user.name  trnguyen

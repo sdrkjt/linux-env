@@ -1,0 +1,40 @@
+#! /usr/bin/zsh
+# multiple command execution with regexp filename generation
+# June 16 2004
+
+# syntax  : redo [-q] '<regexp>' <cmd> <glob_file_list> 
+#      where <cmd> <file> <file_regexped> is a valid 
+# ex      :  redo 's/\.foo$/\.bar$/' mv toto*.foo  
+#       replace 'foo' by' bar' in the extension of all files in toto*.foo 
+
+# args
+verbose=1
+if [ "$1" = "-q" ]; then
+   verbose=0
+   shift
+fi
+
+if [ "$#" -lt 3 -o "$1" = "-h" ]; then
+   echo "usage : redo [-q] '<regexp>'   <cmd>  <glob_file_list>"
+   echo "ex :    redo   's/\.foo/.bar/'  mv     *.foo"
+   exit
+fi
+
+regexp=$1
+command=$2
+shift ; shift
+glob_pat=$*
+
+# loop 
+foreach file ("${=glob_pat}")
+  newfile=`echo $file | sed -e $regexp`
+  if [ $file = $newfile ]; then
+    echo "File $file not modified"
+    continue
+  fi
+  if [ $verbose -eq 1 ]; then
+    echo $command $file $newfile
+  fi
+  eval $command $file $newfile
+end
+

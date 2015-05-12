@@ -1,0 +1,6 @@
+# csh compatibility 
+# A.D. 16 / 05 / 2000
+# usage setenv PATH /usr/bin/
+
+export $1=$2
+

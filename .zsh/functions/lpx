@@ -1,0 +1,11 @@
+# print ASCII files on the standard printer
+# A.D. 16/05/2000
+# Linux only
+# usage lpx *.c
+
+foreach i in $@ 
+    echo Printing $i
+    mpage -X $i | lpr
+end
+
+

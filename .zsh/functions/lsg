@@ -1,0 +1,5 @@
+# search a file with the corresponfing pattern
+# chp 16/05/2000
+# usage lsg toto 
+
+ls  | grep $1

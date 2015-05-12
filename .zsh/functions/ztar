@@ -1,0 +1,23 @@
+
+
+if [ "$1" != "${1%.tgz}" -o "$1" != "${1%.tar.gz}" ]; then
+	tar xfz $1
+    echo "Untar Done (gunzip)"
+elif [ "$1" != "${1%.tar}" ]; then
+	tar xf $1
+    echo "Untar Done (whithout decompression)"
+elif [ "$1" != "${1%.tar.bz2}" ]; then
+	tar xfj $1
+    echo "Untar Done (bunzip2)"
+elif [ "$1" != "${1%.tar.Z}" ]; then
+	tar xfZ $1
+    echo "Untar Done (uncompress)"
+elif [ -d "$1" ]; then
+	tar cvfz $1.tgz $1
+	echo "Compressed Archive Done for directory $1"
+elif [ -f "$1" ]; then
+	 gzip $1
+	 echo "Compression of file $1 Done (gzip only)"
+else
+	echo "What do you mean ?"
+fi

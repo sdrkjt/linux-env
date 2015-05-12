@@ -1,0 +1,5 @@
+# search a process with the corresponfing pattern
+# a.D. 16/05/2000
+# usage psg toto
+
+ps auxww | grep -v grep | grep $1

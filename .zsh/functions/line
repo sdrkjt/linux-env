@@ -1,0 +1,38 @@
+# give line n or n-m of a file
+# A.D.    2 / 4 / 01
+ 
+if [ "$#" -lt 1 -o "${1/-h/}" != "$1" ]; then 
+	echo "Usage $0 [-n] [-h] ( N | N-M | N- | -M ) file"
+	echo '-n display the line numbers'
+	echo '-h give this help' 
+	return
+fi
+strl=1
+endl=-1	
+optl=""
+if [ "${1#-n}" != $1 ]; then
+	optl="-n"
+	shift
+fi
+if [ "${1/-[0-9]*/}" = "${1/[0-9]*-/}" ]; then
+	strl="${1/-[0-9]*/}"
+	endl="$strl"
+elif [ "${1#-}" != "$1" ]; then
+	endl="${1#-}"
+elif [ "${1%-}" != "$1" ]; then
+	strl="${1%-}"
+elif [ "${1/[0-9]*-[0-9]*/}" != "$1" ]; then
+	strl="${1/-[0-9]*/}"
+	endl="${1/[0-9]*-/}"
+fi 
+if [ "$#" -ge 2 -a "${2#-n}" != "$2" ]; then
+	optl="-n"
+	shift
+fi
+if [ $endl -eq -1 ]; then
+	cat $optl $2 | tail +${strl}
+else 
+	if [ $endl -lt $strl ]; then; return; fi			
+	cat $optl $2 | tail +${strl} | head -n $[ $endl - ${strl} + 1]
+fi
+

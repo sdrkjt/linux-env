@@ -1,0 +1,17 @@
+# reindent : re-indent C/C++ source file
+# a ~ is added to the name of the backup file (default)
+# -gnu : use the default for GNU program
+# -pmt : do not change modification
+# -nut : replace tab by space
+# -l95 : ligne length extended to 95 instead of 79 
+# -di16: align variables a column 16
+# -T Real -T Int -T Long -T Complex
+# -T m_in -T m_out -T m_net -T m_st -T m_stshift" 
+ 
+
+OPTIONS="-gnu -pmt -nut -l95"
+# save default options in configuration file
+echo $OPTIONS >~/.indent.pro 
+
+# we can now use the indent program 
+indent $*

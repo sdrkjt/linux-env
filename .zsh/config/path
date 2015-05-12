@@ -1,0 +1,27 @@
+# PATH
+path=( $HOME/bin /usr/local/bin /bin /usr/bin \
+       /usr/X11/bin \
+       /opt/OpenOffice.org/program \
+	   $path )
+test "$UID" = 0 || PATH="$PATH:."
+
+test -d /home/users/design_tools/bin && PATH="/home/users/design_tools/bin:$PATH"
+
+platform_path=`/home/users/ref_designs/Software/platform`
+test -d $platform_path/bin && PATH=$platform_path/bin:$PATH
+
+export PATH
+typeset -U path
+
+# FPATH
+FPATH="${HOME}/.zsh/functions:/home/users/setup/zsh/functions:$FPATH"
+for func in $^fpath/*(N-.x:t); autoload $func
+typeset -U fpath
+
+# MANPATH
+manpath=(/usr/local/man /usr/share/man /usr/man /usr/X11R6/man \
+         /usr/lang/man /usr/openwin/man /opt/gnome/share/man)
+export MANPATH
+typeset -U manpath
+
+

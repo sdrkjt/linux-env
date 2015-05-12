@@ -1,0 +1,19 @@
+# print window selected with mouse button 1
+# if option -negate reverse video is used
+# Linux Only
+# A.D. 5 / 12 / 2000
+
+if  [ $# -eq 0 ]; then
+	REV=""
+else
+	if [ $1 = "-reverse" ]; then
+		REV="-negate"
+	else
+		REV=""
+	fi
+fi
+PATH=/usr/X11R6/bin:/usr/bin:$PATH
+#import $REV -colorspace GRAY -silent \
+import $REV -silent \
+       -rotate -90\> -frame \
+       -page 567x813+10+10  ps:- | lpr

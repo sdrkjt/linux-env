@@ -1,0 +1,64 @@
+#! /bin/zsh
+#
+# backup script
+
+# files to save
+GLOB_PAT=( "*.c" "*.h" "*.vhd" ".*rc" "*.scr" "*.txt" "*.cc" "*.csh" "*.zsh"\
+           "*.mk" "Makefile*" "*.vhdl" "*.do" "*.perl" "*.pl" "*.py" \
+           "*.ini" "*.tcl" "*.lyx" "*,v" "*.cpp" "*.fig" "*.sci" )
+
+# directory excluded from backup
+EXCLIST=(tmp update backup RCS)
+
+# do not save big files
+MAXSIZE=250k
+
+
+EXCLCMD=""
+for dir in ${EXCLIST}; do
+	EXCLCMD=(-name "${dir}" -prune -o ${EXCLCMD} )
+done
+
+# recursive backup
+DIRLIST="./"
+if [ "X$1" = "X-r" ]; then
+    DIRLIST=`/usr/bin/find ./ ${EXCLCMD} -type d -perm -0440 -print`
+    shift
+fi
+
+# tag
+TAG=""
+if [ ! -z $1 ]; then
+    TAG="-N$1"
+fi
+
+MYPATH=`pwd -r`
+echo -n "-I- RCS backup of $MYPATH"
+for DIR in ${=DIRLIST}; do
+    cd $DIR
+    FIRST=1
+    for EXTENSION in ${GLOB_PAT}; do
+	FINDCMD=(${EXCLCMD} -name ${EXTENSION} -size -${MAXSIZE} \
+             -maxdepth 1 -type f -perm -0440 -print)
+	FILELIST=`/usr/bin/find ./ ${FINDCMD}`
+	if [ ! $FILELIST = "" ]; then
+            if [ $FIRST = "1" ]; then
+                echo
+                print -n "$DIR \E[50G" 
+                FIRST=0
+            fi
+            echo -n "  $EXTENSION"
+	    for FILE in ${=FILELIST}; do
+                if [ ! -d RCS ]; then
+                    mkdir RCS	
+                fi
+                mdate=`/bin/ls -l --time-style='+%F %X' $FILE| /bin/awk '{ print $6" "$7 }'`
+		        ci -q -l -m"automatic saving" $TAG -t-$FILE:t $FILE
+                /bin/touch -c -m --date=$mdate $FILE
+ 	    done
+	fi
+    done
+    cd $MYPATH
+done
+echo 
+

@@ -1,0 +1,10 @@
+# changement de repertoire
+setopt autocd auto_pushd pushd_ignore_dups pushd_silent 
+setopt hist_ignore_dups pushd_minus
+# completion automatique
+setopt autolist auto_menu always_to_end complete_in_word list_types
+# correction automatique
+setopt correct correct_all 
+# divers
+setopt nobeep interactive_comments zle extended_glob 
+

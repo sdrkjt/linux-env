@@ -1,0 +1,33 @@
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
+bindkey '²' reverse-menu-complete
+bindkey "^[\!" insert-last-word
+bindkey '^?' delete-char
+bindkey '\177'  backward-delete-char
+bindkey '^[[3~' delete-char
+export WORDCHARS="$WORDCHARS\'\""
+# Removal of these 2 bindings due to a copy/paste side effect between Citrix & other Appls 
+#bindkey '^[[2D' backward-word
+#bindkey '^[[2C' forward-word
+bindkey '^[[2B' kill-word
+bindkey '^[[2A' undo
+
+# for new PCs
+bindkey '^[[1;2D' backward-word
+bindkey '^[[1;2C' forward-word
+bindkey '^[[1;2B' kill-word
+bindkey '^[[1;2A' undo
+bindkey '^[[1;5D' beginning-of-line
+bindkey '^[[1;5C' end-of-line
+bindkey '^[[1;5B' history-search-forward
+bindkey '^[[1;5A' history-search-backward 
+
+if [ $TERM = linux ]; then
+    bindkey '^?' backward-delete-char
+    bindkey '^[[3~' delete-char
+fi
+
+
+if [ -f ${HOME}/.bindkey ]; then
+    source ${HOME}/.bindkey
+fi

@@ -1,0 +1,10 @@
+# search a process with the corresponfing pattern
+# a.D. 16/05/2000
+# usage psg toto 
+
+PATH=/usr/ucb:$PATH
+if [ $# = 2 ]; then
+   ps auxewwww | grep -v grep | grep $1 | grep --color $2
+else 
+   ps auxewwww | grep -v grep | grep --color "$1"
+fi

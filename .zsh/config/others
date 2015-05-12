@@ -1,0 +1,58 @@
+# pas de fichier core
+limit coredumpsize 0 2>/dev/null
+
+# export EDITOR=vi
+export EDITOR=emacs
+
+# pager (more, less ,...)
+export PAGER='less -EMsX'
+export LESS='-EMsXR'
+export JLESSCHARSET=iso8859
+# super less (syntaxic coloration)
+#which lesspipe.sh >& /dev/null && export LESSOPEN="|lesspipe.sh %s"
+
+# CVS
+export CVS_RSH=ssh
+
+# arch
+if [ -f /bin/arch ]; then
+  export ARCH=`/bin/arch`
+elif  [ -f /usr/bin/arch ]; then
+  export ARCH=`/usr/bin/arch`
+else
+  export ARCH=`arch`
+fi
+export LIBC=`/usr/bin/ldd --version | awk '{if (match($$0,"ldd")) print $$NF}'`
+
+# ls colors init
+if [ -f   $HOME/.zsh/dir_colors ]; then
+	eval `dircolors -b $HOME/.zsh/dir_colors`
+elif [ -f  /home/users/setup/zsh/dir_colors  ]; then
+	eval `dircolors -b /home/users/setup/zsh/dir_colors`
+fi
+if [ -f  $HOME/.dir_colors ]; then
+   	eval `dircolors -b $HOME/.dir_colors`
+fi
+
+# no check MAIL
+export MAIL=/tmp/mail
+export MAILCHECK=0
+
+# ouverture automatique des fichiers inclus dans les mails
+export MAILCAPS=$HOME/.mailcap:/etc/mailcap
+
+
+# this is used to enable the use of accents (xterm -u8 or utf8 in xrdb)
+#export LC_CTYPE=en_US.UTF-8
+
+# taille des historiques
+export LITHISTSIZE=500
+export HISTSIZE=500
+export DIRSTACKSIZE=10
+export SAVEHIST=500
+export HISTFILE=${HOME}/.zhist
+
+if [ -r $HOME/.zhist ]; then
+    fc -R $HOME/.zhist
+    /bin/rm $HOME/.zhist
+fi

@@ -1,0 +1,6 @@
+
+
+foreach file in `ls **/*~(*.aa|*.gz|*.tgz)(.L+200000)`
+   echo Compressing $file
+   gzip $file
+end

@@ -1,0 +1,25 @@
+# remote login (with ssh)
+# A.D.   16/5/2000
+# usage remote or associated link
+
+PROG="$0"
+MACH=`hostname`
+
+if [ "${PROG%%[0123456789]*}" = "pc" ]; then
+  MACH=${PROG/pc/dibcom}
+elif [ "${PROG%%[0123456789]*}" = "" ]; then
+  MACH=dibcom${PROG}
+else
+  echo "I do not understand"
+  return
+fi
+echo "Connecting with ssh to $MACH"
+
+rm -f $HOME/.zhist
+fc -W $HOME/.zhist
+echo $DISPLAY >/$HOME/.remote_disp
+cd /
+ssh $MACH
+cd $OLDPWD
+fc -R $HOME/.zhist
+

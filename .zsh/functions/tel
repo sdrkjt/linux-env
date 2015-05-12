@@ -1,0 +1,5 @@
+# grep phone number
+# D.B. 8 / 6 / 2007
+# usage :  tel [name]
+
+grep -i $* /home/users/setup/zsh/functions/phone_list.txt

@@ -1,0 +1,16 @@
+# set display to an expected value
+# A.D. 16 / 5 / 2000
+# usage :  disp [host]
+
+if [ $# -eq 1 ]; then
+    export DISPLAY=$@:0.0
+else
+    export DISPLAY=`who am i | sed -e 's/.*(\([^)\.:]*\).*/\1:0/'`
+fi
+
+if [ $DISPLAY = ":0.0" ]; then
+    export DISPLAY=`hostname`:0.0
+fi
+
+echo DISPLAY=${DISPLAY}
+
