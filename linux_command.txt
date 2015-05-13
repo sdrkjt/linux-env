@@ -46,3 +46,7 @@ find stratego-libraries/sglr/lib -name "*.str" -exec touch {} ";"
 df
 du --max-depth=1 -h /*Occupancy per folder with depth 1 and size not depicted in bytes (but K/M/G...bytes)*/
 du -sh mydir
+
+/****patch creation****/
+diff  -Naur oldDir newDir > file.patch
+patch -Np0 -i file.patch
