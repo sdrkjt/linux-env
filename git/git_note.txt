@@ -66,3 +66,7 @@ apres on veut pusher sur X => use merge dans ce cas, car si on fait un rebase su
 /**********email - username****
 git config --global user.email trung.nguyen@polytechnique.org
 git config --global user.name  trnguyen
+
+/***Installation de Git sur un serveur***
+git clone --bare qwtplot qwtplot.git
+mv qwtplot.git/ /home/gitbase/.
