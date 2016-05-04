@@ -14,6 +14,26 @@
 (setq display-time-24hr-format t)
 (setq undo-limit 64000)
 
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+    'package-archives
+    '("melpa" . "http://melpa.milkbox.net/packages/")
+    t)
+  (package-initialize)
+  )
+;(setq-default tab-width 2);
+;(setq-default indent-tabs-mode t)
+;(setq tab-width 2)
+;(defvaralias 'c-basic-offset 'tab-width)
+(setq-default
+ indent-tabs-mode t
+ tab-width 4
+ c-basic-offset 4
+)
+(smart-tabs-insinuate 'c 'c++ 'java 'javascript 'cperl 'python 'ruby 'nxml)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (define-key ctl-x-map [?r ?\C-\ ] 'rm-set-mark)
 (define-key ctl-x-map "r\C-x" 'rm-exchange-point-and-mark)
 (define-key ctl-x-map "r\C-w" 'rm-kill-region)
@@ -152,7 +172,7 @@
   ;; Your init file should contain only one such instance.
  )
 
-(add-hook 'font-lock-mode-hook 
+(add-hook 'font-lock-mode-hook
           (function (lambda ()
                       (setq font-lock-keywords
                             (append font-lock-keywords
@@ -183,7 +203,7 @@
  '(show-paren-mode t nil (paren))
  '(tab-always-indent t)
  '(transient-mark-mode t))
- 
+
 
 
 (put 'upcase-region 'disabled nil)
