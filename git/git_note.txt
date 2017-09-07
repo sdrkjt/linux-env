@@ -70,3 +70,7 @@ git config --global user.name  trnguyen
 /***Installation de Git sur un serveur***
 git clone --bare qwtplot qwtplot.git
 mv qwtplot.git/ /home/gitbase/.
+
+alias gsfe='git submodule foreach'
+gsfe git fetch
+gsfe gitk --all

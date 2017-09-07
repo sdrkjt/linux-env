@@ -2,7 +2,7 @@ m .zshrc.user
 
 which dikff_source
 
-git --version  
+git --version
 
 use "." and "," for director stack
 
@@ -13,7 +13,7 @@ bg, fg, kill, killall
 ps -edf
 kill -9 27727
 
-ps -ef | grep sci #monit processus   
+ps -ef | grep sci #monit processus
 ps auxww | grep -v grep | grep emacs
 
 cvs ci -m
@@ -50,3 +50,8 @@ du -sh mydir
 /****patch creation****/
 diff  -Naur oldDir newDir > file.patch
 patch -Np0 -i file.patch
+
+ssh -l trungdung vsora-server
+
+/****sed********************/
+grep -rl "vslib;" | xargs sed -i "s/vslib;/vsora;/g"
