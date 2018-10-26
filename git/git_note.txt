@@ -16,8 +16,6 @@ more .git/config
 //git push origin :heads/fe_ofunc.cc
 //git push -f origin master //delete old ref & push new ref
 
-git push origin --delete dev
-
 git submodule sync
 git submodule update
 
@@ -45,7 +43,10 @@ git checkout -t newbranch //checkout a branch from database&tracking
 git tag ko
 git tag -d ko
 git push origin tagname
-git branch -d toto //delete branch
+git branch -D toto //delete branch
+git push origin --delete toto //delete remote
+git fetch -p //fetch from origin with deleted remote branches
+
 
 /**********Patch****
 git diff <from> <to> <fichier> >file.patch //create a patch

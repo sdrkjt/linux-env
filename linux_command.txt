@@ -12,6 +12,7 @@ bg, fg, kill, killall
 
 ps -edf
 kill -9 27727
+sudo killall -9 vsSim_host
 
 ps -ef | grep sci #monit processus
 ps auxww | grep -v grep | grep emacs
@@ -26,7 +27,7 @@ tail -n 2 trace_file //automatically repeated each second
 tail -n 2 trace_file | egrep "C_nsr|D_nsr"
 
 /bin/sh -c ./testDopplerSingle -x testDopplerSingle_SC_div2.cfg 2>&1 | tee -a trace_debug.txt
-
+./test &> log.txt
 
 alias cleanMake='./cleanMake -f CMMB_MAKE_FE.hh'
 
@@ -42,6 +43,11 @@ ssh -X ...
 find -type f -name "*~" -exec rm '{}' ';'
 find stratego-libraries/sglr/lib -name "*.str" -exec touch {} ";"
 
+/**history******************/
+CTRL-r // research command
+CTRL-p //previous command
+CTRL-n //next command
+
 /****Hard disk occupancy****/
 df
 du --max-depth=1 -h /*Occupancy per folder with depth 1 and size not depicted in bytes (but K/M/G...bytes)*/
@@ -55,3 +61,11 @@ ssh -l trungdung vsora-server
 
 /****sed********************/
 grep -rl "vslib;" | xargs sed -i "s/vslib;/vsora;/g"
+
+/****tar********************/
+tar -zcvf tar-archive-name.tar.gz source-folder-name // compact
+tar -zxvf tar-archive-name.tar.gz  //extract
+
+
+/***server******************/
+scp  /home/tdnguyen/.ssh/tdnguyen trungdung@vsora-server:.ssh/id_rsa
